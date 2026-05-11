@@ -37,7 +37,7 @@ List all WhatsApp accounts connected to the current workspace.
 
 ### `workspace_team`
 
-List teammates, teams, roles, and which WhatsApp accounts each teammate can access.
+List teammates, teams, roles, and which WhatsApp accounts each teammate can access. The `email` field of each teammate is what `chat_assign` expects for its `responsible_email` argument.
 
 **Arguments:** none
 
@@ -47,6 +47,7 @@ List teammates, teams, roles, and which WhatsApp accounts each teammate can acce
 - "Who's on my team?"
 - "List teammates with the Owner role."
 - "Which teammates have access to my WhatsApp account?"
+- "Find the email of the teammate named 'Alice' so I can assign chats to her."
 
 ---
 
@@ -112,9 +113,48 @@ Inspect a single message by UID.
 
 ---
 
-## Chat State
+## Messaging Writes
 
-Lifecycle operations on chats.
+**⚠️ Quota-consuming.** These actions draw from the same monthly messaging quota as the TimelinesAI UI. Confirm before bulk operations.
+
+### `chat_send_message`
+
+Send a message in an existing chat. Supports plain text, attachments, and threaded replies (when replying to a specific message UID).
+
+**Example prompts:**
+- "Reply to chat 99653 with 'On my way, ETA 10 min.'"
+- "Send 'Thanks!' to the chat with John."
+- "Send the attached PDF to chat 99653 with a short note."
+
+### `whatsapp_account_send_message`
+
+Send a message to any phone number via a specific WhatsApp account (cold send). Creates a chat if none exists. Phone number must be in international format starting with `+`.
+
+**Example prompts:**
+- "Send 'Hello from MCP' to +15551234567 from my main account."
+- "Reach out to +1555... about the proposal."
+
+### `message_reply`
+
+Threaded reply to a specific message (references the original — recipient sees the quoted reply UI).
+
+**Example prompts:**
+- "Reply to message UID abc-123 with 'Got it, will follow up.'"
+
+### `message_react`
+
+Set or clear an emoji reaction on a message. Pass an emoji to set; pass an empty value to clear.
+
+**Example prompts:**
+- "React to message UID abc-123 with 👍."
+- "Add a ❤️ reaction to the last message in chat 99653."
+- "Remove my reaction from message UID abc-123."
+
+---
+
+## Chat Mutations
+
+State + triage operations on chats. Idempotent — calling `chat_set_label` twice with the same label is a no-op.
 
 ### `chat_open`
 
@@ -131,48 +171,9 @@ Close a chat (archive from active inbox).
 - "Close chat 99653."
 - "Mark this conversation as handled."
 
----
+### Shared-inbox operations
 
-## Messaging Writes
-
-**⚠️ Quota-consuming.** These actions draw from the same monthly messaging quota as the TimelinesAI UI. Confirm before bulk operations.
-
-### `chat_send_message`
-
-Send a message in an existing chat.
-
-**Example prompts:**
-- "Reply to chat 99653 with 'On my way, ETA 10 min.'"
-- "Send 'Thanks!' to the chat with John."
-
-### `whatsapp_account_send_message`
-
-Send a message to any phone number via a specific WhatsApp account. Creates a chat if none exists. Phone number must be in international format starting with `+`.
-
-**Example prompts:**
-- "Send 'Hello from MCP' to +15551234567 from my main account."
-- "Reach out to +1555... about the proposal."
-
-### `message_reply`
-
-Reply to a specific message (threaded reply, references the original).
-
-**Example prompts:**
-- "Reply to message UID abc-123 with 'Got it, will follow up.'"
-
-### `message_react`
-
-React to a message with an emoji.
-
-**Example prompts:**
-- "React to message UID abc-123 with 👍."
-- "Add a ❤️ reaction to the last message in chat 99653."
-
----
-
-## Triage Workflow
-
-Shared-inbox operations for multi-teammate workspaces.
+Multi-teammate workspaces use labels + assignments for triage.
 
 ### `chat_set_label`
 

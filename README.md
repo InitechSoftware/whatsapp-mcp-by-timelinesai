@@ -118,34 +118,29 @@ Browse and read. No writes.
 | `get_chat_messages` | Page through messages in a chat |
 | `message_details` | Inspect a single message |
 
-### Chat state — 2 tools
-
-| Tool | Purpose |
-|---|---|
-| `chat_open` | Reopen a closed chat |
-| `chat_close` | Close a chat |
-
 ### Messaging writes — 4 tools
 
 **Quota-consuming.** Same monthly messaging budget as the TimelinesAI UI.
 
 | Tool | Purpose |
 |---|---|
-| `chat_send_message` | Send a message in an existing chat |
-| `whatsapp_account_send_message` | Send a message to any phone via a specific WA account (creates chat if needed) |
-| `message_reply` | Reply to a specific message |
-| `message_react` | React to a message with an emoji |
+| `chat_send_message` | Send a message (text, attachment, or reply) in an existing chat |
+| `whatsapp_account_send_message` | Send a message to any phone via a specific WA account (creates chat if none exists — cold send) |
+| `message_reply` | Threaded reply to a specific message |
+| `message_react` | Set or clear an emoji reaction on a message |
 
-### Triage workflow — 4 tools
+### Chat mutations — 6 tools
 
-Shared-inbox patterns: labels and assignments.
+State + triage operations on chats. Idempotent label and assign ops.
 
 | Tool | Purpose |
 |---|---|
+| `chat_open` | Reopen a closed chat |
+| `chat_close` | Close a chat |
+| `chat_assign` | Assign chat to a teammate by email (use `workspace_team` to discover emails) |
+| `chat_unassign` | Unassign current responsible teammate |
 | `chat_set_label` | Add a label to a chat |
-| `chat_remove_label` | Remove a label |
-| `chat_assign` | Assign chat to a teammate by email |
-| `chat_unassign` | Unassign |
+| `chat_remove_label` | Remove a label from a chat |
 
 → Full schemas and example prompts: [`docs/tools.md`](docs/tools.md)
 
@@ -153,7 +148,9 @@ Shared-inbox patterns: labels and assignments.
 
 ## How authentication works
 
-The server uses OAuth via the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) proxy. On first tool invocation, your browser opens to `mcp.services.timelines.ai`. Log in to your TimelinesAI account to authorize the connection. Token cached locally; subsequent sessions reconnect without prompting.
+The server uses OAuth via the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) proxy. On first connection, your browser opens to `mcp.services.timelines.ai` — log in to your TimelinesAI account to authorize. Token is cached locally by `mcp-remote`; subsequent sessions reconnect without prompting.
+
+On machines that already have an active TimelinesAI session (e.g. you're logged in to TimelinesAI in your default browser, or you've previously authorized the MCP via the Claude.ai integration), authorization may complete silently with no browser prompt.
 
 Every action runs **as you** — your role's permissions in TimelinesAI apply to MCP calls exactly as they apply to UI actions.
 
