@@ -6,6 +6,7 @@
 [![MCP](https://img.shields.io/badge/Model%20Context%20Protocol-1.0-blue)](https://modelcontextprotocol.io)
 [![Works with Claude](https://img.shields.io/badge/Works%20with-Claude-orange)](https://claude.ai)
 [![Works with Cursor](https://img.shields.io/badge/Works%20with-Cursor-black)](https://cursor.com)
+[![smithery badge](https://smithery.ai/badge/tools-3uci/timelinesai-whatsapp)](https://smithery.ai/servers/tools-3uci/timelinesai-whatsapp)
 
 Drive your **TimelinesAI WhatsApp inbox** from Claude, Cursor, Claude Code, or any MCP-compatible client. List chats, read history, send messages, react, label, assign teammates, check quotas — all 18 tools, all as **you**, all on the same quota the TimelinesAI UI uses.
 
