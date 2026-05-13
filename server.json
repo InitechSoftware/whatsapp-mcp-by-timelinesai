@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.InitechSoftware/whatsapp-mcp-by-timelinesai",
+  "title": "WhatsApp MCP by TimelinesAI",
+  "description": "Drive your real WhatsApp inbox from Claude — send, reply, label, assign, and triage via TimelinesAI.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
+    "source": "github"
+  },
+  "homepage": "https://timelines.ai/whatsapp-mcp",
+  "license": "MIT",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.services.timelines.ai/mcp"
+    }
+  ]
+}

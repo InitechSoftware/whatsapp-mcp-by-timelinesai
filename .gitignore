@@ -9,3 +9,9 @@ node_modules/
 # OpenWolf
 .wolf/
 .claude/
+
+# Local-only submission drafts
+submission/
+
+# mcp-publisher binary
+mcp-publisher
