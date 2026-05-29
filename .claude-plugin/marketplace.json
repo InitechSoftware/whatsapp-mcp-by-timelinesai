@@ -10,7 +10,7 @@
       "description": "Drive your real WhatsApp inbox from Claude — read, reply, label, assign, triage via TimelinesAI. 18 tools, remote MCP, OAuth 2.0.",
       "version": "1.0.0",
       "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
-      "homepage": "https://timelines.ai",
+      "homepage": "https://timelines.ai/de/whatsapp-mcp-guide",
       "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
       "license": "MIT",
       "category": "messaging",
