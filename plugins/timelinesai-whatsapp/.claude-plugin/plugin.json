@@ -1,0 +1,9 @@
+{
+  "name": "timelinesai-whatsapp",
+  "description": "Drive your real WhatsApp inbox from Claude via TimelinesAI — 18 tools across chat discovery, messaging, and triage.",
+  "version": "1.0.0",
+  "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
+  "homepage": "https://timelines.ai",
+  "license": "MIT",
+  "keywords": ["whatsapp", "messaging", "crm", "inbox"]
+}
