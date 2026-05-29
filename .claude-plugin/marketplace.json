@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "timelinesai",
+  "owner": { "name": "TimelinesAI", "email": "support@timelines.ai" },
+  "description": "Official TimelinesAI plugins for Claude Code.",
+  "plugins": [
+    {
+      "name": "timelinesai-whatsapp",
+      "source": "./plugins/timelinesai-whatsapp",
+      "description": "Drive your real WhatsApp inbox from Claude — read, reply, label, assign, triage via TimelinesAI. 18 tools, remote MCP, OAuth 2.0.",
+      "version": "1.0.0",
+      "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
+      "homepage": "https://timelines.ai/de/whatsapp-mcp-guide",
+      "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
+      "license": "MIT",
+      "category": "messaging",
+      "keywords": ["whatsapp", "inbox", "messaging", "crm", "customer-support", "sales"]
+    }
+  ]
+}

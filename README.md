@@ -37,6 +37,17 @@ claude mcp add timelinesai -- npx -y mcp-remote@latest https://mcp.services.time
 
 Restart Claude Code. A browser tab will open on first use — log in with your TimelinesAI account to authorize. Done.
 
+### Claude Code (plugin)
+
+Prefer one-step install via the TimelinesAI plugin marketplace:
+
+```bash
+/plugin marketplace add InitechSoftware/whatsapp-mcp-by-timelinesai
+/plugin install timelinesai-whatsapp@timelinesai
+```
+
+This auto-wires the MCP server — no manual config. A browser tab opens on first use for OAuth. Update later with `/plugin marketplace update timelinesai`.
+
 ### Cursor
 
 Edit `~/.cursor/mcp.json`:
