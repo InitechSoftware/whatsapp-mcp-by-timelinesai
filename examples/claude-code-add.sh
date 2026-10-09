@@ -4,5 +4,4 @@
 
 claude mcp add timelinesai -- \
   npx -y mcp-remote@latest \
-  https://mcp.services.timelines.ai/mcp \
-  --host 127.0.0.1
+  https://mcp.services.timelines.ai/mcp

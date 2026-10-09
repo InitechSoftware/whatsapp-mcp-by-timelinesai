@@ -32,7 +32,7 @@ Don't have a TimelinesAI account yet? **[Sign up free →](https://app.timelines
 ### Claude Code (CLI)
 
 ```bash
-claude mcp add timelinesai -- npx -y mcp-remote@latest https://mcp.services.timelines.ai/mcp --host 127.0.0.1
+claude mcp add timelinesai -- npx -y mcp-remote@latest https://mcp.services.timelines.ai/mcp
 ```
 
 Restart Claude Code. A browser tab will open on first use — log in with your TimelinesAI account to authorize. Done.
@@ -60,8 +60,7 @@ Edit `~/.cursor/mcp.json`:
       "args": [
         "-y",
         "mcp-remote@latest",
-        "https://mcp.services.timelines.ai/mcp",
-        "--host", "127.0.0.1"
+        "https://mcp.services.timelines.ai/mcp"
       ]
     }
   }
@@ -82,8 +81,7 @@ Open **Settings → Developer → Edit Config** and add:
       "args": [
         "-y",
         "mcp-remote@latest",
-        "https://mcp.services.timelines.ai/mcp",
-        "--host", "127.0.0.1"
+        "https://mcp.services.timelines.ai/mcp"
       ]
     }
   }
