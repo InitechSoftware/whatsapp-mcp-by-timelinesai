@@ -1,0 +1,10 @@
+{
+  "name": "timelinesai-whatsapp",
+  "version": "1.0.2",
+  "description": "Run your team's WhatsApp inbox from Gemini CLI: find chats that need a reply, then reply, label and assign them. Remote MCP with OAuth sign-in.",
+  "mcpServers": {
+    "timelinesai": {
+      "httpUrl": "https://mcp.services.timelines.ai/mcp"
+    }
+  }
+}
