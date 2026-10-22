@@ -7,8 +7,8 @@
     {
       "name": "timelinesai-whatsapp",
       "source": "./plugins/timelinesai-whatsapp",
-      "description": "Ask questions across your whole WhatsApp inbox — search history, read conversations, reply, label and assign via TimelinesAI. 34 tools, remote MCP, OAuth 2.0.",
-      "version": "1.0.2",
+      "description": "Connect your team's WhatsApp inbox to Claude, ChatGPT, Cursor or any MCP client. Ask what needs a reply, then reply, label and assign chats from a prompt.",
+      "version": "1.0.3",
       "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
       "homepage": "https://timelines.ai/whatsapp-mcp",
       "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",

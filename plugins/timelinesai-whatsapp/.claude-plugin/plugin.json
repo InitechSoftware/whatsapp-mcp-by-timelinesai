@@ -1,9 +1,9 @@
 {
   "name": "timelinesai-whatsapp",
-  "description": "Ask questions across your whole WhatsApp inbox via TimelinesAI — 34 tools across chat discovery, messaging, and triage. Works with Claude, ChatGPT, Cursor and any MCP client.",
-  "version": "1.0.2",
+  "description": "Connect your team's WhatsApp inbox to Claude, ChatGPT, Cursor or any MCP client. Ask what needs a reply, then reply, label and assign chats from a prompt.",
+  "version": "1.0.3",
   "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
-  "homepage": "https://timelines.ai/whatsapp-mcp",
+  "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=claudeplugins&utm_medium=mcp_directory&utm_campaign=mcp_launch",
   "license": "MIT",
   "keywords": ["whatsapp", "messaging", "crm", "inbox"]
 }
