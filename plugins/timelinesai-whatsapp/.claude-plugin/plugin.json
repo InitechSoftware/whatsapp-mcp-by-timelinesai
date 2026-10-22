@@ -4,6 +4,7 @@
   "version": "1.0.3",
   "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
   "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=claudeplugins&utm_medium=mcp_directory&utm_campaign=mcp_launch",
+  "privacyPolicyUrl": "https://timelines.ai/privacy-policy",
   "license": "MIT",
   "keywords": ["whatsapp", "messaging", "crm", "inbox"]
 }
