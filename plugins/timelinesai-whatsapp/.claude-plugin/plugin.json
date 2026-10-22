@@ -5,7 +5,11 @@
   "version": "1.0.3",
   "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
   "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=claudeplugins&utm_medium=mcp_directory&utm_campaign=mcp_launch",
+  "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
+  "documentationUrl": "https://help.timelines.ai/en/articles/14999607-connect-timelinesai-to-your-ai-assistant-mcp",
+  "supportUrl": "https://help.timelines.ai/en",
   "privacyPolicyUrl": "https://timelines.ai/privacy-policy",
+  "termsOfServiceUrl": "https://timelines.ai/terms",
   "license": "MIT",
   "keywords": ["whatsapp", "messaging", "crm", "inbox"]
 }
