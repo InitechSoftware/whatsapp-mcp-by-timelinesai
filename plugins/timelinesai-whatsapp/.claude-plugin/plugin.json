@@ -1,6 +1,6 @@
 {
   "name": "timelinesai-whatsapp",
-  "displayName": "WhatsApp MCP by TimelinesAI",
+  "displayName": "TimelinesAI",
   "description": "Connect your team's WhatsApp inbox to Claude, ChatGPT, Cursor or any MCP client. Ask what needs a reply, then reply, label and assign chats from a prompt.",
   "version": "1.0.3",
   "author": { "name": "TimelinesAI", "email": "support@timelines.ai" },
