@@ -1,0 +1,15 @@
+{
+  "name": "timelinesai",
+  "displayName": "TimelinesAI",
+  "version": "1.0.0",
+  "description": "Run your team's WhatsApp inbox from Cursor: find chats that need a reply, then reply, label and assign them. 34 tools, OAuth sign-in, included in every TimelinesAI plan at no extra charge.",
+  "author": {
+    "name": "TimelinesAI",
+    "email": "support@timelines.ai"
+  },
+  "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=cursor&utm_medium=mcp_directory&utm_campaign=mcp_launch&utm_content=plugin_homepage",
+  "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
+  "license": "MIT",
+  "keywords": ["whatsapp", "whatsapp-business-api", "inbox", "messaging", "crm", "customer-support", "sales", "mcp"],
+  "logo": "assets/logo.png"
+}

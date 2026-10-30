@@ -1,0 +1,18 @@
+{
+  "name": "timelinesai",
+  "owner": {
+    "name": "TimelinesAI",
+    "email": "support@timelines.ai"
+  },
+  "metadata": {
+    "description": "Official TimelinesAI plugins for Cursor."
+  },
+  "plugins": [
+    {
+      "name": "timelinesai",
+      "source": "./plugins/timelinesai-cursor",
+      "description": "Run your team's WhatsApp inbox from Cursor: find chats that need a reply, then reply, label and assign them. 34 tools, OAuth sign-in, included in every TimelinesAI plan at no extra charge.",
+      "category": "productivity"
+    }
+  ]
+}
