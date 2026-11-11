@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "timelinesai": {
+      "url": "https://mcp.services.timelines.ai/mcp",
+      "transport": "streamable-http"
+    }
+  }
+}
