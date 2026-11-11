@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "timelinesai-whatsapp",
+  "version": "1.0.0",
+  "description": "Connects the agent to the TimelinesAI WhatsApp MCP server: search and summarise WhatsApp chats, find unanswered conversations, and send messages, notes and labels from your connected WhatsApp number.",
+  "author": {
+    "name": "TimelinesAI",
+    "url": "https://timelines.ai"
+  },
+  "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=hermes&utm_medium=marketplace&utm_campaign=mcp_listing",
+  "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
+  "license": "MIT",
+  "keywords": ["whatsapp", "messaging", "crm", "inbox", "mcp"],
+  "extensions": {
+    "com.nousresearch.hermes": {
+      "servers": {
+        "timelinesai": { "trust": "untrusted" }
+      }
+    }
+  }
+}
