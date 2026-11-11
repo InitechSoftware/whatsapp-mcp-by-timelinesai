@@ -4,13 +4,7 @@ WhatsApp control and visibility for teams, from OpenClaw. TimelinesAI connects y
 
 Built for sales and support teams that use TimelinesAI as their WhatsApp CRM and shared inbox.
 
-TimelinesAI gives your AI assistant access to your team's real WhatsApp inbox. Connect once with your TimelinesAI login (OAuth sign-in), then ask in plain language:
-
-- What needs me today?
-- Which chats have had no reply for two days?
-- Summarise everything this customer asked this month.
-
-The assistant can also act on what it finds: reply, react, label, open or close chats, and assign them to teammates. Every action runs as you, with your role's permissions, and uses the same messaging quota as the TimelinesAI app. It covers regular WhatsApp numbers connected by QR code and WhatsApp Business API numbers, including approved message templates.
+Connect once with your TimelinesAI login (OAuth sign-in), then ask in plain language. The agent can also act on what it finds: reply, react, label, open or close chats and assign them to teammates. Every action runs as you, with your role's permissions, and uses the same messaging quota as the TimelinesAI app. It covers regular WhatsApp numbers connected by QR code and WhatsApp API numbers, including approved message templates.
 
 ## What you can do
 
@@ -19,13 +13,13 @@ The assistant can also act on what it finds: reply, react, label, open or close 
 - **Both kinds of number:** regular WhatsApp and the WhatsApp Business API, including approved templates
 - **One sign-in:** your TimelinesAI account (OAuth), nothing to copy or paste
 
-## Example prompts
+## Try asking
 
-1. What needs me today?
-2. Walk my Monday inbox: group unread chats by rep and flag anything stalled 2+ days.
-3. Which customers asked about pricing this week? One line each.
-4. How much messaging quota do we have left this month?
-5. Assign every unassigned chat from today to Anna and label it "new lead".
+1. Show my unread WhatsApp chats from the last 24 hours and flag any that look urgent.
+2. Find open WhatsApp chats with no reply from us in 2 days and draft a follow-up for each.
+3. Which WhatsApp numbers are connected, and how much of this month's message quota is left?
+4. Which WhatsApp chats this week mention pricing? One line each, newest first.
+5. Draft a reply to my most recent unanswered WhatsApp chat and wait for my OK before sending.
 
 ## Who it's for
 
