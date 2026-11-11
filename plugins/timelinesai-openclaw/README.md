@@ -8,7 +8,7 @@ Bundle plugin (Claude format): one skill, `whatsapp-inbox`, plus the server defi
 ## Install
 
 ```bash
-openclaw plugins install clawhub:timelinesai-openclaw
+openclaw plugins install clawhub:timelinesai-whatsapp
 ```
 
 If your OpenClaw build does not load the bundled remote server (`openclaw plugins inspect timelinesai-whatsapp` shows it as unsupported), add it directly and sign in with OAuth:
