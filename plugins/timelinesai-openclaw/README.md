@@ -1,6 +1,8 @@
-# TimelinesAI
+# TimelinesAI for WhatsApp
 
-Connect your team's WhatsApp inbox to OpenClaw and any other MCP client. Ask what needs a reply, then reply, label and assign chats from a prompt.
+WhatsApp control and visibility for teams, from OpenClaw. TimelinesAI connects your team's real WhatsApp inbox, regular WhatsApp numbers and WhatsApp API numbers, to your agent. Ask which chats need a reply, who has waited longest or what a customer asked last week, then send WhatsApp messages, label, assign and close chats without opening the inbox.
+
+Built for sales and support teams that use TimelinesAI as their WhatsApp CRM and shared inbox.
 
 TimelinesAI gives your AI assistant access to your team's real WhatsApp inbox. Connect once with your TimelinesAI login (OAuth sign-in), then ask in plain language:
 
@@ -63,3 +65,5 @@ Included in every TimelinesAI plan at no extra charge. There is a free trial.
 - Full details: https://timelines.ai/whatsapp-mcp/privacy
 
 More: https://timelines.ai/whatsapp-mcp?utm_source=openclaw&utm_medium=marketplace&utm_campaign=mcp_listing
+
+TimelinesAI is an independent product. It is not made by, affiliated with, or endorsed by WhatsApp or Meta.

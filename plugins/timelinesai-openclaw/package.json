@@ -1,7 +1,7 @@
 {
   "name": "timelinesai-whatsapp",
-  "version": "1.0.2",
-  "description": "Connect your team's WhatsApp inbox to Claude, ChatGPT, Cursor or any MCP client. Ask what needs a reply, then reply, label and assign chats from a prompt.",
+  "version": "1.0.3",
+  "description": "WhatsApp CRM inbox automation for teams: ask what needs a reply, then send WhatsApp messages, label and assign chats from OpenClaw.",
   "license": "MIT",
   "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=openclaw&utm_medium=marketplace&utm_campaign=mcp_listing",
   "repository": {
