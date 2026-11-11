@@ -1,6 +1,6 @@
 {
   "name": "timelinesai-whatsapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Connects the agent to the TimelinesAI WhatsApp MCP server: search and summarise WhatsApp chats, find unanswered conversations, and send messages, notes and labels from your connected WhatsApp number.",
   "author": { "name": "TimelinesAI", "url": "https://timelines.ai" },
   "homepage": "https://timelines.ai/whatsapp-mcp?utm_source=openclaw&utm_medium=marketplace&utm_campaign=mcp_listing",
