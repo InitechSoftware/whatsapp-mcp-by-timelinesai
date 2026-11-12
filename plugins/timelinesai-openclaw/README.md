@@ -1,4 +1,4 @@
-# TimelinesAI for WhatsApp
+# WhatsApp Team Inbox by TimelinesAI
 
 WhatsApp control and visibility for teams, from OpenClaw. TimelinesAI connects your team's real WhatsApp inbox, regular WhatsApp numbers and WhatsApp API numbers, to your agent. Ask which chats need a reply, who has waited longest or what a customer asked last week, then send WhatsApp messages, label, assign and close chats without opening the inbox.
 
