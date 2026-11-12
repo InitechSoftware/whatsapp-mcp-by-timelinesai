@@ -1,5 +1,9 @@
 # WhatsApp Team Inbox by TimelinesAI
 
+![WhatsApp Team Inbox by TimelinesAI in a Hermes terminal session](assets/hero-animated.svg)
+
+*Illustration: the chat and customer names are examples.*
+
 WhatsApp control and visibility for teams, from Hermes. TimelinesAI connects your team's real WhatsApp inbox, regular WhatsApp numbers and WhatsApp API numbers, to your agent. Ask which chats need a reply, who has waited longest or what a customer asked last week, then send WhatsApp messages, label, assign and close chats without opening the inbox.
 
 Built for sales and support teams that use TimelinesAI as their WhatsApp CRM and shared inbox.
@@ -12,6 +16,14 @@ Connect once with your TimelinesAI login (OAuth sign-in), then ask in plain lang
 - **Act from a prompt:** reply, react, label, assign, open and close chats
 - **Both kinds of number:** regular WhatsApp and the WhatsApp Business API, including approved templates
 - **One sign-in:** your TimelinesAI account (OAuth), nothing to copy or paste
+
+## How it works
+
+![Three steps: sign in once, ask in plain English, Hermes acts with 60+ tools](assets/how-it-works.png)
+
+## Tools
+
+![WhatsApp tool groups: chats, messages, labels and owners, WhatsApp API, quick replies, team and automation](assets/tools-map.png)
 
 ## Try asking
 
