@@ -1,15 +1,19 @@
 # Tool Reference
 
-Full reference for all 34 tools exposed by the TimelinesAI MCP server at `https://mcp.services.timelines.ai/mcp`.
+Full reference for all 66 tools exposed by the TimelinesAI MCP server at `https://mcp.services.timelines.ai/mcp`.
 
-There are two parallel sets of tools, plus three workspace tools that both sets share:
+There are two parallel sets of tools, plus workspace, quick-reply and webhook tools that both sets share:
 
 | Group | Tools |
 |---|---|
-| [Workspace](#workspace-meta) (shared) | 3 |
-| [WhatsApp: QR-connected numbers](#whatsapp-qr-connected-numbers) | 14 |
-| [WhatsApp Business API (WABA)](#whatsapp-business-api-waba) | 17 |
-| **Total** | **34** |
+| [Workspace and team](#workspace-meta) (shared) | 7 |
+| [Quick replies](#quick-replies) (shared) | 5 |
+| [Webhooks](#webhooks) (shared) | 5 |
+| [WhatsApp: QR-connected numbers](#whatsapp-qr-connected-numbers) | 24 |
+| [WhatsApp Business API (WABA)](#whatsapp-business-api-waba) | 25 |
+| **Total** | **66** |
+
+> **Connected before 11 Nov 2026?** Webhooks, quick-reply editing and invitations need extra permissions. Disconnect and reconnect the MCP once to get them. A 401 or 403 from one of these tools means reconnect first.
 
 Use the set that matches the number. `workspace_whatsapp_accounts` lists QR numbers, and `waba_accounts` lists WABA numbers.
 
@@ -19,7 +23,7 @@ Each entry lists arguments and one or more example prompts you can send to your 
 
 ## Workspace Meta
 
-Read-only introspection. Low quota cost. Safe to call at any time.
+Introspection tools are read-only, low quota cost and safe to call at any time. `workspace_invite` and `workspace_invitation_revoke` change the team and need admin rights.
 
 ### `workspace_quotas`
 
@@ -59,6 +63,141 @@ List teammates, teams, roles, and which WhatsApp accounts each teammate can acce
 - "List teammates with the Owner role."
 - "Which teammates have access to my WhatsApp account?"
 - "Find the email of the teammate named 'Alice' so I can assign chats to her."
+
+### `workspace_me`
+
+Who this connection is signed in as: the user, their role and their team. Read it before anything that needs admin rights, such as inviting or revoking.
+
+**Arguments:** none
+
+**Example prompts:**
+- "Who am I signed in as, and what's my role?"
+- "Can I invite teammates from this account?"
+
+### `workspace_invite`
+
+Invite someone to the workspace. They get an email. Inviting an address that is already in the workspace updates their role and team and re-sends the mail, so this also re-sends a pending invite. Needs admin rights.
+
+**Arguments:** `email` *(string, required)*, `first_name`, `last_name`, `role` *(admin, team_supervisor, teammate, agent, collaborator)*, `team_title` *(defaults to "Default team")*
+
+**Example prompts:**
+- "Invite sam@example.com as an agent on the Support team."
+- "Re-send the invitation to sam@example.com."
+
+### `workspace_invitation_revoke`
+
+Revoke a pending invitation. Needs admin rights.
+
+**Arguments:** `user_id` *(integer, required)*: from `workspace_team`
+
+**Example prompts:**
+- "Cancel the pending invitation for sam@example.com."
+
+### `get_more_tools`
+
+Ask the server for additional tools that fit a goal. Today it returns the full list, so most clients will not need it.
+
+**Arguments:** `context` *(string, required)*: the goal
+
+---
+
+## Quick replies
+
+Saved text replies your team uses in WhatsApp chats and as free-text replies in WABA chats (shown as Templates in the app). These are not WABA message templates; for those use `waba_templates`.
+
+### `quick_reply_list`
+
+List quick replies, newest-edited first. No paging.
+
+**Arguments:** none
+
+**Example prompts:**
+- "Show our saved quick replies."
+
+### `quick_reply_details`
+
+One quick reply with its text. Send the text with whichever send tool fits the chat. A file saved with a quick reply is not returned; send it separately.
+
+**Arguments:** `quick_reply_id` *(integer, required)*
+
+**Example prompts:**
+- "Show the text of the 'Opening hours' quick reply."
+
+### `quick_reply_create`
+
+Save a new quick reply.
+
+**Arguments:** `name` *(required, up to 160 characters)*, `text` *(required, up to 4096 characters)*, `visibility` *(public, private or read-only; default public)*, `team_title` *(omit to share with all teams)*
+
+`private` is for you only. `public` can be used and edited by anyone it is shared with. `read-only` can be used by them, and changed only by you, an admin or the team supervisor. Owners and admins may pick any team; other roles always create in their own team.
+
+**Example prompts:**
+- "Save a private quick reply called 'Thanks' with the text 'Thanks for reaching out, we'll reply shortly.'"
+
+### `quick_reply_update`
+
+Change a quick reply. Only the fields you pass change. Pass `team_title` null to share with all teams again.
+
+**Arguments:** `quick_reply_id` *(required)*, `name`, `text`, `visibility`, `team_title`
+
+**Example prompts:**
+- "Change the 'Opening hours' quick reply to say we open at 9."
+
+### `quick_reply_delete`
+
+Delete a quick reply for everyone it is shared with. A 403 means your role cannot change it.
+
+**Arguments:** `quick_reply_id` *(integer, required)*
+
+**Example prompts:**
+- "Delete the 'Holiday 2025' quick reply."
+
+---
+
+## Webhooks
+
+Subscribe your own URL to workspace events. The endpoint must answer 2xx within 5 seconds. Payload shapes: [webhooks guide](https://timelines.ai/docs/guides/webhooks). Existing webhooks may belong to an integration such as Zapier, Make or n8n, so changing or removing one can break it.
+
+**Event types:** `message:new`, `message:sent:new`, `message:received:new`, `message:delivered`, `message:read`, `message:reaction`, `message:edited`, `message:deleted`, `chat:new`, `chat:incoming:new`, `chat:outgoing:new`, `chat:renamed`, `chat:responsible:assigned`, `chat:responsible:unassigned`, `call:incoming:missed`, `call:incoming:ended`, `call:outgoing:ended`, `whatsapp:account:connected`, `whatsapp:account:disconnected`, `whatsapp:account:suspended`, `whatsapp:account:resumed`, `whatsapp:account:reachout_timelock:active`, `whatsapp:account:reachout_timelock:cleared`, and for WABA: `waba:message:received`, `waba:message:delivered`, `waba:message:failed`, `waba:message:read`, `waba:chat:incoming`, `waba:chat:outgoing`, `waba:chat:assigned`, `waba:chat:unassigned`, `waba:chat:closed`, `waba:chat:reopened`, `waba:account:active`, `waba:account:disabled`, `waba:account:disconnected`, `waba:template:approved`, `waba:template:rejected`, `waba:template:disabled`.
+
+### `webhook_list`
+
+Subscriptions in the workspace: URL, event type, enabled flag and `errors_counter` (consecutive delivery failures).
+
+**Arguments:** none
+
+**Example prompts:**
+- "Which webhooks do we have, and are any failing?"
+
+### `webhook_details`
+
+One webhook by id.
+
+**Arguments:** `webhook_id` *(integer, required)*
+
+### `webhook_create`
+
+Subscribe a URL to an event type. Idempotent per URL plus event type: the same pair again returns and re-enables the existing subscription. To copy every message, subscribe `message:received:new` and `message:sent:new` separately.
+
+**Arguments:** `url` *(https, required)*, `event_type` *(required)*, `enabled` *(default true)*
+
+**Example prompts:**
+- "Send every incoming message to https://example.com/hook."
+
+### `webhook_update`
+
+Change URL or event type, or set `enabled` to pause and resume deliveries. Fields you leave out keep their value.
+
+**Arguments:** `webhook_id` *(required)*, `url`, `event_type`, `enabled`
+
+**Example prompts:**
+- "Pause the webhook that posts to https://example.com/hook."
+
+### `webhook_delete`
+
+Remove a subscription for good. To pause instead, use `webhook_update` with `enabled` false.
+
+**Arguments:** `webhook_id` *(integer, required)*
 
 ---
 
@@ -130,6 +269,21 @@ Inspect a single message by UID.
 **Example prompts:**
 - "Show me details of message UID abc-123."
 
+#### `message_status_history`
+
+The sending timeline for one message, in order, with a timestamp per step. Use it to answer when a message was delivered or read, or why it did not arrive. `message_details` gives only the current status.
+
+**Arguments:** `message_uid` *(string, required)*
+
+**Example prompts:**
+- "When was message abc-123 delivered and read?"
+
+#### `message_reactions`
+
+Who has reacted to a message and with which emoji. Setting or clearing a reaction is `message_react`.
+
+**Arguments:** `message_uid` *(string, required)*
+
 ### Messaging writes
 
 **⚠️ Quota-consuming.** These actions draw from the same monthly messaging quota as the TimelinesAI UI. Confirm before bulk operations.
@@ -173,6 +327,15 @@ Set or clear an emoji reaction on a message. Pass an emoji to set it, or an empt
 **Example prompts:**
 - "React to message UID abc-123 with 👍."
 - "Remove my reaction from message UID abc-123."
+
+#### `file_upload_from_url`
+
+Store a file in the workspace from a publicly reachable URL and get its `uid`. Pass that uid as `file_uid` to `chat_send_message` to send it as an attachment. The uid can be reused for several sends.
+
+**Arguments:** `download_url` *(required)*, `filename`, `content_type`
+
+**Example prompts:**
+- "Upload https://example.com/price-list.pdf and send it to chat 99653."
 
 ### Chat mutations
 
@@ -221,11 +384,64 @@ Remove a label from a chat. Other labels stay. **Arguments:** `chat_id`, `label`
 **Example prompts:**
 - "Remove 'spam' from chat 99653."
 
+#### `chat_rename`
+
+Rename the chat in TimelinesAI and synced CRMs. Does not change the contact's WhatsApp profile name.
+
+**Arguments:** `chat_id`, `name`
+
+**Example prompts:**
+- "Rename chat 99653 to 'Acme: Dana'."
+
+#### `chat_mark_read` / `chat_mark_unread`
+
+Set the shared-inbox read state. This is not a WhatsApp read receipt: the contact is not told.
+
+**Arguments:** `chat_id`
+
+**Example prompts:**
+- "Mark chat 99653 unread so I come back to it."
+
+#### `chat_set_ai_autoresponse`
+
+Turn the AI auto-reply on or off for this one chat. The workspace setting is unchanged.
+
+**Arguments:** `chat_id`, `enabled` *(boolean)*
+
+**Example prompts:**
+- "Turn off the AI auto-reply in chat 99653."
+
+#### `chat_add_note`
+
+Add an internal note. Visible to teammates in TimelinesAI only, never sent to the contact.
+
+**Arguments:** `chat_id`, `text` *(up to 10,000 characters)*
+
+**Example prompts:**
+- "Add a note to chat 99653: customer wants a quote by Friday."
+
+### Connect a number
+
+#### `whatsapp_account_start_phone_pairing`
+
+Start linking a QR WhatsApp number by phone code, without scanning a QR. Takes an international number with a leading `+` that the person has confirmed. Returns before a code exists. Needs the `accounts:write` permission. Omit `user_id` to link the signed-in user.
+
+**Arguments:** `phone` *(required)*, `user_id`
+
+**Example prompts:**
+- "Connect my WhatsApp number +15551234567."
+
+#### `whatsapp_account_phone_pairing_status`
+
+State of a pairing link: `starting`, `awaiting_code` (shows the 8-character code to enter under WhatsApp > Linked devices > Link a device > Link with phone number instead), `connected`, `expired`, `code_unavailable` or `failed`.
+
+**Arguments:** `id` *(from the start call)*
+
 ---
 
 ## WhatsApp Business API (WABA)
 
-17 tools for WhatsApp Business API numbers. They work like the QR set, with two WhatsApp rules on top:
+25 tools for WhatsApp Business API numbers. They work like the QR set, with two WhatsApp rules on top:
 
 - **Free text only inside the service window.** Check `service_window_is_open` (from `waba_list_chats` or `waba_chat_details`) before sending free text. When the window is closed, send an approved template.
 - **New conversations start with a template.** Use `waba_start_chat` with an `APPROVED` template. Template sends are charged by Meta.
@@ -242,6 +458,12 @@ The WABA numbers you can send from. Use each `id` as `waba_account_id`.
 
 **Example prompts:**
 - "Which WhatsApp Business API numbers can I send from?"
+
+#### `waba_account_details`
+
+One WABA account by id: status, owner, display phone number and the Meta ids.
+
+**Arguments:** `waba_account_id` *(integer, from `waba_accounts`)*
 
 #### `waba_list_chats`
 
@@ -288,6 +510,38 @@ One WABA message by UID. Failed sends include a `failure_reason`.
 
 **Example prompts:**
 - "Why did my last template message to this customer fail?"
+
+#### `waba_message_status_history`
+
+The sending timeline for one WABA message. A failed step carries `failure_reason` with Meta's code, title and details.
+
+**Arguments:** `message_uid`
+
+**Example prompts:**
+- "Why did my last template message not arrive?"
+
+#### `waba_message_reactions`
+
+Who has reacted to a WABA message and with which emoji.
+
+**Arguments:** `message_uid`
+
+### Analytics
+
+#### `waba_account_analytics`
+
+Sent and delivered messages per day over a date range, plus a breakdown by `COUNTRY`, `PRICING_CATEGORY` or `PRICING_TYPE`. Start and end are read as UTC; the day buckets come back in the business account's timezone, so the first and last can be partial. Figures cover every number on the same WhatsApp Business Account, not only the one you pass. Meta does not return cost figures for these accounts. Computed asynchronously: if not ready it returns a handle for `waba_account_analytics_result`.
+
+**Arguments:** `waba_account_id`, `start`, `end`, `dimensions` *(optional, comma-separated)*
+
+**Example prompts:**
+- "How many WABA messages did we send and deliver in October, by country?"
+
+#### `waba_account_analytics_result`
+
+Read an analytics request that was still pending. `state` is `pending`, `ready` or `error`.
+
+**Arguments:** `waba_account_id`, `handle_id`
 
 ### Templates
 
@@ -349,6 +603,9 @@ Same behaviour as the QR set, applied to WABA chats. Each returns `{"status":"ok
 | `waba_chat_unassign` | `chat_id` | Remove the assignee |
 | `waba_chat_set_label` | `chat_id`, `label` | Add a label, keeping existing ones |
 | `waba_chat_remove_label` | `chat_id`, `label` | Remove one label, keeping the others |
+| `waba_chat_rename` | `chat_id`, `name` | Rename the chat in TimelinesAI |
+| `waba_chat_mark_read` | `chat_id` | Mark read in the shared inbox |
+| `waba_chat_mark_unread` | `chat_id` | Mark unread in the shared inbox |
 
 ---
 

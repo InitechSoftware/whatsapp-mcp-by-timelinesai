@@ -1,6 +1,6 @@
 # TimelinesAI for Cursor
 
-Run your team's WhatsApp inbox from Cursor. Ask what needs a reply, then reply, react, label and assign chats from a prompt. 34 tools for regular WhatsApp numbers and WhatsApp Business API (WABA) numbers, all running as **you**.
+Run your team's WhatsApp inbox from Cursor. Ask what needs a reply, then reply, react, label and assign chats from a prompt. 60+ tools (messaging, triage, quick replies, webhooks, team, WABA analytics) for regular WhatsApp numbers and WhatsApp Business API (WABA) numbers, all running as **you**.
 
 **Included in every TimelinesAI plan at no extra charge.** [Website](https://timelines.ai/whatsapp-mcp?utm_source=cursor&utm_medium=mcp_directory&utm_campaign=mcp_launch&utm_content=plugin_readme) · [Full tool reference](https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai/blob/main/docs/tools.md)
 
@@ -57,13 +57,17 @@ or, for a read-only check:
 
 The second prompt calls `workspace_quotas` and `workspace_whatsapp_accounts`, which only read data. If both return your workspace, you're set.
 
-## Tools (34)
+## Tools (66)
 
 | Group | Count | Examples |
 |---|---|---|
-| Workspace (shared) | 3 | `workspace_quotas`, `workspace_whatsapp_accounts`, `workspace_team` |
-| WhatsApp: QR-connected numbers | 14 | `list_chats`, `chat_history`, `chat_send_message`, `chat_assign`, `chat_set_label` |
-| WhatsApp Business API (WABA) | 17 | `waba_list_chats`, `waba_templates`, `waba_chat_send_template`, `waba_start_chat` |
+| Workspace and team (shared) | 7 | `workspace_quotas`, `workspace_team`, `workspace_me`, `workspace_invite` |
+| Quick replies (shared) | 5 | `quick_reply_list`, `quick_reply_create`, `quick_reply_update` |
+| Webhooks (shared) | 5 | `webhook_list`, `webhook_create`, `webhook_update` |
+| WhatsApp: QR-connected numbers | 24 | `list_chats`, `chat_history`, `chat_send_message`, `chat_assign`, `chat_add_note`, `whatsapp_account_start_phone_pairing` |
+| WhatsApp Business API (WABA) | 25 | `waba_list_chats`, `waba_templates`, `waba_chat_send_template`, `waba_account_analytics` |
+
+If you connected before 11 Nov 2026, disconnect and reconnect once to get webhooks, quick-reply editing and invitations.
 
 Full schemas and example prompts: [`docs/tools.md`](https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai/blob/main/docs/tools.md).
 

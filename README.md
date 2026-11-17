@@ -9,7 +9,7 @@
 [![Works with Cursor](https://img.shields.io/badge/Works%20with-Cursor-black)](https://cursor.com)
 [![smithery badge](https://smithery.ai/badge/tools-3uci/timelinesai-whatsapp)](https://smithery.ai/servers/tools-3uci/timelinesai-whatsapp)
 
-Connect your **TimelinesAI WhatsApp inbox** to Claude, ChatGPT, Cursor, Codex, Grok or any MCP client. Ask what needs a reply, then reply, react, label and assign chats from a prompt. 34 tools, all running as **you**, for both regular WhatsApp numbers and WhatsApp Business API (WABA) numbers.
+Connect your **TimelinesAI WhatsApp inbox** to Claude, ChatGPT, Cursor, Codex, Grok or any MCP client. Ask what needs a reply, then reply, react, label and assign chats from a prompt. 60+ tools, all running as **you**: read and reply to chats, manage labels, notes and quick replies, set up webhooks, invite teammates and pull WABA analytics, for both regular WhatsApp numbers and WhatsApp Business API (WABA) numbers.
 
 **Included in every TimelinesAI plan at no extra charge.** [Website](https://timelines.ai/whatsapp-mcp?utm_source=github&utm_medium=mcp_directory&utm_campaign=mcp_launch&utm_content=readme_top) · [Setup guide](https://timelines.ai/whatsapp-mcp-guide) · [MCP Academy](https://timelines.ai/academy/mcp)
 
@@ -17,7 +17,7 @@ Connect your **TimelinesAI WhatsApp inbox** to Claude, ChatGPT, Cursor, Codex, G
 
 ## What is this?
 
-The TimelinesAI MCP server is a remote control for your real WhatsApp inbox inside [TimelinesAI](https://timelines.ai). Connect once with your TimelinesAI login, then your AI assistant gains 34 tools across **chat discovery**, **messaging**, **triage** (labels + assignments) and **workspace introspection**, for both regular WhatsApp numbers (connected by QR code) and **WhatsApp Business API (WABA)** numbers.
+The TimelinesAI MCP server is a remote control for your real WhatsApp inbox inside [TimelinesAI](https://timelines.ai). Connect once with your TimelinesAI login, then your AI assistant gains 60+ tools across **chat discovery**, **messaging**, **triage** (labels, assignments, notes, read/unread, AI autoresponse), **quick replies**, **webhooks**, **team management**, **message insights**, **WABA analytics**, **phone-code pairing** and **workspace introspection**, for both regular WhatsApp numbers (connected by QR code) and **WhatsApp Business API (WABA)** numbers.
 
 It's a hosted server: nothing to install, no API keys. Your assistant connects to `https://mcp.services.timelines.ai/mcp` and you sign in once.
 
@@ -109,30 +109,62 @@ or, for a tour:
 
 ---
 
-## Tool catalog (34 tools)
+## Tool catalog (66 tools)
 
-Two parallel sets of tools (one for **regular WhatsApp numbers** connected by QR code, one for **WhatsApp Business API (WABA)** numbers) plus three workspace tools shared by both. Use the set that matches the number: `workspace_whatsapp_accounts` lists QR numbers, `waba_accounts` lists WABA numbers.
+Two parallel sets of tools (one for **regular WhatsApp numbers** connected by QR code, one for **WhatsApp Business API (WABA)** numbers) plus workspace, quick-reply and webhook tools shared by both. Use the set that matches the number you are working with.
 
 | Group | Tools |
 |---|---|
-| Workspace (shared) | 3 |
-| WhatsApp: QR-connected numbers | 14 |
-| WhatsApp Business API (WABA) | 17 |
-| **Total** | **34** |
+| Workspace and team (shared) | 7 |
+| Quick replies (shared) | 5 |
+| Webhooks (shared) | 5 |
+| WhatsApp: QR-connected numbers | 24 |
+| WhatsApp Business API (WABA) | 25 |
+| **Total** | **66** |
 
-### Workspace: 3 tools
+> **Connected before 11 Nov 2026?** Webhooks, quick-reply editing and invitations need extra permissions. Disconnect and reconnect the MCP once to get them. If one of these tools returns 401 or 403, reconnecting is the first fix.
 
-Read-only introspection. Cheap to call. Shared by both sets.
+### Workspace and team: 7 tools
+
+Shared by both sets. Everything except `workspace_invite` and `workspace_invitation_revoke` is read-only.
 
 | Tool | Purpose |
 |---|---|
 | `workspace_quotas` | Current plan, seats, messaging + API call quotas, billing period |
 | `workspace_whatsapp_accounts` | Connected QR WhatsApp accounts (id, phone, owner, status) |
 | `workspace_team` | Teammates, roles, invitation status, account bindings. Use for assign emails in both sets |
+| `workspace_me` | Who this connection is signed in as: user, role and team. Check before invites or revokes |
+| `workspace_invite` | Invite someone to the workspace by email, with role and team. Needs admin rights. Re-sends a pending invite |
+| `workspace_invitation_revoke` | Revoke a pending invitation. Needs admin rights |
+| `get_more_tools` | Ask the server for additional tools that fit a goal |
 
-### WhatsApp (QR-connected numbers): 14 tools
+### Quick replies: 5 tools
 
-#### Chat discovery + inspection: 4 tools
+Saved text replies your team uses in WhatsApp chats (shown as Templates in the app). These are not WABA message templates. Visibility can be private, public or read-only.
+
+| Tool | Purpose |
+|---|---|
+| `quick_reply_list` | List quick replies, newest-edited first |
+| `quick_reply_details` | One quick reply, including its text |
+| `quick_reply_create` | Save a new quick reply with a name, text, visibility and optional team |
+| `quick_reply_update` | Change name, text, visibility or team |
+| `quick_reply_delete` | Delete a quick reply for everyone it is shared with |
+
+### Webhooks: 5 tools
+
+Subscribe your own URL to workspace events (messages, chats, calls, WhatsApp accounts, WABA messages and templates). The endpoint must answer 2xx within 5 seconds. Payload shapes: [webhooks guide](https://timelines.ai/docs/guides/webhooks).
+
+| Tool | Purpose |
+|---|---|
+| `webhook_list` | Subscriptions with URL, event type, enabled flag and consecutive failure count |
+| `webhook_details` | One webhook by id |
+| `webhook_create` | Subscribe a URL to an event type. Idempotent per URL plus event type |
+| `webhook_update` | Change URL or event type, or pause and resume deliveries |
+| `webhook_delete` | Remove a subscription for good |
+
+### WhatsApp (QR-connected numbers): 24 tools
+
+#### Chat discovery + inspection: 6 tools
 
 Browse and read. No writes.
 
@@ -142,8 +174,10 @@ Browse and read. No writes.
 | `chat_details` | Full metadata for a single chat |
 | `chat_history` | List messages in a chat. Filter by date and direction, page with message-UID cursors |
 | `message_details` | Inspect a single message |
+| `message_status_history` | Sending timeline of one message: when it was sent, delivered and read |
+| `message_reactions` | Who reacted to a message and with which emoji |
 
-#### Messaging writes: 4 tools
+#### Messaging writes: 5 tools
 
 **Quota-consuming.** Same monthly messaging budget as the TimelinesAI UI.
 
@@ -153,8 +187,9 @@ Browse and read. No writes.
 | `whatsapp_account_send_message` | Send a message to any phone via a specific WA account (creates the chat if none exists: a cold send) |
 | `message_reply` | Threaded reply to a specific message |
 | `message_react` | Set or clear an emoji reaction on a message |
+| `file_upload_from_url` | Store a file from a public URL and get a `file_uid` to send as an attachment |
 
-#### Chat mutations: 6 tools
+#### Chat mutations: 11 tools
 
 State + triage operations on chats. Idempotent label and assign ops.
 
@@ -166,20 +201,42 @@ State + triage operations on chats. Idempotent label and assign ops.
 | `chat_unassign` | Unassign current responsible teammate |
 | `chat_set_label` | Add a label to a chat |
 | `chat_remove_label` | Remove a label from a chat |
+| `chat_rename` | Rename the chat in TimelinesAI and synced CRMs |
+| `chat_mark_read` | Mark the chat read in the shared inbox (the contact is not told) |
+| `chat_mark_unread` | Mark the chat unread in the shared inbox |
+| `chat_set_ai_autoresponse` | Turn the AI auto-reply on or off for this chat |
+| `chat_add_note` | Add an internal note, visible to teammates only, never sent to the contact |
 
-### WhatsApp Business API (WABA): 17 tools
+#### Connect a number: 2 tools
 
-#### Accounts + chat discovery: 5 tools
+| Tool | Purpose |
+|---|---|
+| `whatsapp_account_start_phone_pairing` | Start linking a WhatsApp number by phone code, no QR scan. Needs the `accounts:write` permission |
+| `whatsapp_account_phone_pairing_status` | Read the pairing state and the 8-character code to enter in WhatsApp > Linked devices |
+
+### WhatsApp Business API (WABA): 25 tools
+
+#### Accounts + chat discovery: 8 tools
 
 Browse and read. No writes.
 
 | Tool | Purpose |
 |---|---|
 | `waba_accounts` | WABA numbers you can send from. Use `id` as `waba_account_id` |
+| `waba_account_details` | One WABA account: status, owner, display phone number, Meta ids |
 | `waba_list_chats` | WABA chats you can see. Filter by open/closed, assignee, WABA account, phone; 50/page. Check `service_window_is_open` before sending |
 | `waba_chat_details` | One WABA chat: service window, assignment, labels, WABA account |
 | `waba_chat_history` | Messages in a WABA chat, newest first. Filter by date and direction, page with message-UID cursors |
 | `waba_message_details` | Inspect one WABA message; failed sends include `failure_reason` |
+| `waba_message_status_history` | Sending timeline of one WABA message; a failed step carries Meta's failure reason |
+| `waba_message_reactions` | Who reacted to a WABA message and with which emoji |
+
+#### Analytics: 2 tools
+
+| Tool | Purpose |
+|---|---|
+| `waba_account_analytics` | Sent and delivered messages per day over a date range, with optional breakdown by country, pricing category or pricing type. Covers the whole WhatsApp Business Account |
+| `waba_account_analytics_result` | Fetch an analytics result that was still pending |
 
 #### Templates: 2 tools
 
@@ -199,7 +256,7 @@ Browse and read. No writes.
 | `waba_chat_send_template` | Send an approved template in an existing WABA chat: the way to message when the service window is closed. Meta charge |
 | `waba_message_react` | Set or clear an emoji reaction on a WABA message |
 
-#### Chat mutations: 6 tools
+#### Chat mutations: 9 tools
 
 State + triage operations on WABA chats. After any mutation, `waba_chat_details` returns the authoritative state.
 
@@ -211,6 +268,9 @@ State + triage operations on WABA chats. After any mutation, `waba_chat_details`
 | `waba_chat_unassign` | Clear the WABA chat's assignee |
 | `waba_chat_set_label` | Add a label, keeping existing labels |
 | `waba_chat_remove_label` | Remove one label, keeping the others; no-op if the label isn't on the chat |
+| `waba_chat_rename` | Rename the WABA chat in TimelinesAI and synced CRMs |
+| `waba_chat_mark_read` | Mark the WABA chat read in the shared inbox |
+| `waba_chat_mark_unread` | Mark the WABA chat unread in the shared inbox |
 
 → Full schemas and example prompts: [`docs/tools.md`](docs/tools.md)
 
