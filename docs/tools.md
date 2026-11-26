@@ -426,14 +426,19 @@ Add an internal note. Visible to teammates in TimelinesAI only, never sent to th
 
 Start linking a QR WhatsApp number by phone code, without scanning a QR. Takes an international number with a leading `+` that the person has confirmed. Returns before a code exists. Needs the `accounts:write` permission. Omit `user_id` to link the signed-in user.
 
+A number without a leading `+` is never sent as it is: the assistant asks which country it is in, shows the international number, and starts only after the person confirms it. A value that is not a phone number gets a correction and no pairing.
+
 **Arguments:** `phone` *(required)*, `user_id`
 
 **Example prompts:**
 - "Connect my WhatsApp number +15551234567."
+- "Connect 050 656 6305." (the assistant asks for the country first)
 
 #### `whatsapp_account_phone_pairing_status`
 
 State of a pairing link: `starting`, `awaiting_code` (shows the 8-character code to enter under WhatsApp > Linked devices > Link a device > Link with phone number instead), `connected`, `expired`, `code_unavailable` or `failed`.
+
+When a code expires, the assistant names the number, asks the person to check it, and waits for an answer before starting again. A missed code and a number WhatsApp will never link look the same, so it never starts again on its own. "I missed the code" or "the number is right" gets a new code for the same number; a different number goes through the country check above.
 
 **Arguments:** `id` *(from the start call)*
 
