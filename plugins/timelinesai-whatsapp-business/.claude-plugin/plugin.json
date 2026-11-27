@@ -17,5 +17,8 @@
     "crm",
     "inbox"
   ],
-  "privacyPolicyUrl": "https://timelines.ai/whatsapp-business-api-mcp/privacy"
+  "privacyPolicyUrl": "https://timelines.ai/whatsapp-business-api-mcp/privacy",
+  "documentationUrl": "https://timelines.ai/whatsapp-business-api-mcp/claude",
+  "supportUrl": "https://help.timelines.ai/en",
+  "termsOfServiceUrl": "https://timelines.ai/terms"
 }
