@@ -1,6 +1,6 @@
-# TimelinesAI - WhatsApp Business API for Claude
+# Business API Inbox for WhatsApp
 
-Connect Claude to your WhatsApp Business API numbers in TimelinesAI. Ask which chats need a reply, then read the history, reply inside the 24-hour window, send an approved template, start a conversation from a template, and label, assign, close or reopen chats.
+Connect Claude to your TimelinesAI WhatsApp Business API inbox. Ask which chats need a reply, then read the history, reply inside the 24-hour window, send an approved template, start a conversation from a template, and label, assign, close or reopen chats.
 
 ## What it connects to
 
@@ -12,7 +12,7 @@ The plugin connects Claude to the TimelinesAI WhatsApp Business API server at `h
 2. Install the plugin in Claude Code:
 
    ```
-   /plugin install timelinesai-whatsapp-business --marketplace InitechSoftware/whatsapp-mcp-by-timelinesai
+   /plugin install business-api-inbox-for-whatsapp --marketplace InitechSoftware/whatsapp-mcp-by-timelinesai
    ```
 3. When Claude asks you to connect, sign in with your TimelinesAI account (OAuth). No API key is needed.
 
