@@ -1,0 +1,21 @@
+{
+  "name": "timelinesai-whatsapp-business",
+  "displayName": "TimelinesAI - WhatsApp Business API",
+  "description": "Manage your team's WhatsApp Business API inbox from Claude: find chats that need a reply, then reply, send approved templates, label, assign and close chats.",
+  "version": "1.0.0",
+  "author": {
+    "name": "TimelinesAI",
+    "email": "support@timelines.ai"
+  },
+  "homepage": "https://timelines.ai/whatsapp-business-api-mcp",
+  "repository": "https://github.com/InitechSoftware/whatsapp-mcp-by-timelinesai",
+  "license": "MIT",
+  "keywords": [
+    "whatsapp",
+    "whatsapp-business-api",
+    "messaging",
+    "crm",
+    "inbox"
+  ],
+  "privacyPolicyUrl": "https://timelines.ai/whatsapp-business-api-mcp/privacy"
+}
