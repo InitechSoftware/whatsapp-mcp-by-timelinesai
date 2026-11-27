@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "timelinesai-business-api": {
+      "type": "http",
+      "url": "https://mcp.services.timelines.ai/mcp/waba"
+    }
+  }
+}
